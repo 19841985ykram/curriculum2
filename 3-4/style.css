@@ -7,6 +7,35 @@ body {
   background-color: #808080;
 }
 
+/* index.htmlのcss */
 h1 {
   color: #ffffff;
+  font-family: serif;
+  text-align: center;
+  border-bottom: 3px solid #ffffff;
+  margin-top: 130px;
+  margin-bottom: 70px;
+}
+
+/* question.php.のcss */
+form {
+  color: #ffffff;
+  text-align: center;
+}
+
+h2 {
+  color: #ffffff;
+  font-family: serif;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* answer.phpのcss */
+p {
+  color: #ffffff;
+  font-family: serif;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
