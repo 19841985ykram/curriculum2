@@ -30,7 +30,7 @@ if (isset($_POST["signUp"])) {
 
         // 2. ユーザIDとパスワードが入力されていたら認証する
         $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-
+        // ❌$dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['user'], $db['pass']);
         // 3. エラー処理
         try {
             $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -44,7 +44,7 @@ if (isset($_POST["signUp"])) {
         } catch (PDOException $e) {
             $errorMessage = 'データベースエラー';
             // $e->getMessage() でエラー内容を参照可能（デバック時のみ表示）
-            // echo $e->getMessage();
+            echo $e->getMessage();
         }
     } else if ($_POST["password"] != $_POST["password2"]) {
         $errorMessage = 'パスワードに誤りがあります。';

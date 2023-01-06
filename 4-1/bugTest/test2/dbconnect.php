@@ -6,8 +6,9 @@ $db['host'] = "localhost";
 // ユーザー名
 $db['user'] = "root";
 // ユーザー名のパスワード
-// 🟡$db['pass'] = "";
+// ❌$db['pass'] = "";
 $db['pass'] = "root";
 // データベース名
-// 🟡$db['dbname'] = "loginManagement";
+// ❌$db['dbname'] = "loginManagement";
 $db['dbname'] = "YIGroupBlog";
+?>
