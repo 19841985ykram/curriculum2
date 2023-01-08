@@ -1,16 +1,16 @@
 <?php
-// ❌require 'lib/password.php';
+// ❌require 'lib/password.php';🟡ファイルが存在しないから？🟡
 require 'dbconnect.php';
-// セッション開始 🟠この位置で正解なのか？
-session_start();
-// ❌include_once("dbInfo.php");
+// セッション開始 🟡この位置では間違い？🟡
+// session_start();
+// ❌include_once("dbInfo.php");🟡ファイルが存在しないから？🟡
 
 // エラーメッセージ、登録完了メッセージの初期化
 $errorMessage = "";
 $signUpMessage = "";
 
-// セッション開始
-// session_start();🟠この位置は間違い？
+// セッション開始 🟡この位置が正解？（ログイン情報が入力される直前に記述するものなのでしょうか？）🟡
+session_start();
 
 // ログインボタンが押された場合
 if (isset($_POST["signUp"])) {
@@ -30,14 +30,12 @@ if (isset($_POST["signUp"])) {
 
         // 2. ユーザIDとパスワードが入力されていたら認証する
         $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-        // ❌$dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['user'], $db['pass']);
         // 3. エラー処理
         try {
-        // 🟢$db['user'], $db['pass']を、$db['host'], $db['dbname']に変更しました。
-            $pdo = new PDO($dsn, $db['host'], $db['dbname'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-        // 🟢INSERT INTOのVALUESの値が？だったので (root, root)を入力しました。
-            $stmt = $pdo->prepare("INSERT INTO userData(name, password) VALUES (root, root)");
+        // 🟡INSERT INTOのVALUESの値が「？」で正解なのは何故なのか分からないです。🟡
+            $stmt = $pdo->prepare("INSERT INTO users(name, password) VALUES (?, ?)");
 
             $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT)));  // パスワードのハッシュ化を行う（今回は文字列のみなのでbindValue(変数の内容が変わらない)を使用せず、直接excuteに渡しても問題ない）
             $userid = $pdo->lastinsertid();  // 登録した(DB側でauto_incrementした)IDを$useridに入れる
